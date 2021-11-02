@@ -1,27 +1,31 @@
-// Importando o React
-import React from "react";
-// Importando os components necessários da lib react-materialize
-import { Row, Col, Card, Input, Button } from 'react-materialize';
+import React, {useEffect, useState} from "react";
+import {Row} from 'react-materialize';
+import Curso from "./curso";
 
 
-const Contact = () => (
+const Cursos = () => {
+
+    const [cursos, setCursos] = useState([{
+        colecaoId: 0,
+        descricao: "Descrição nula"
+        
+    }])
+
+    useEffect(()=>{
+        fetch('https://flashcard-api-mayck.herokuapp.com/api/colecoes')
+        .then(res => res.json())
+        .then(res => setCursos(res))
+        .catch(error => console.log(error))
+    })
+
+   return(
   <Row>
-    <Col m={3} s={12}>
-     
-    </Col>
-    <Col m={8} s={12}>
-        <h5>Contact</h5>
-        <Card>
-          <Row>
-              <Input placeholder="lorem@ipsum.com" type="email" label="Email" s={12} />
-              <Input placeholder="Lorem Ipsum..." label="Message" s={12} />
-            <Col s={12} m={12}>
-              <Button waves='light' className="right grey darken-2">SEND</Button>
-            </Col>
-          </Row>
-        </Card>
-    </Col>
+      {cursos.map(function(item){
+          return <Curso>descricao={item.descricao}title={item.descricao}</Curso>
+      })}
   </Row>
-);
+  )
 
-export default Contact;
+  };
+
+export default Cursos;
