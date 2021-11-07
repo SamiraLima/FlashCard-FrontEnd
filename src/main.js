@@ -8,6 +8,8 @@ import Cursos from "./components/cursos/cursos";
 import { Container } from 'react-materialize';
 // Importanto o component <Switch /> e <Route /> da nossa Lib de rotas
 import { Switch, Route } from 'react-router-dom'
+import Formulario from "./components/Formulario/Formulario";
+
 
 const Main = () => (
   <main>
@@ -15,6 +17,7 @@ const Main = () => (
       <Switch>
         <Route exact path='/' component={Home}/>
         <Route path='/cursos' component={Cursos}/>
+        <Route path='/formulario' component={Formulario}/>
       </Switch>
     </Container>
   </main>  

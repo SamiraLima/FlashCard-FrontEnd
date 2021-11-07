@@ -1,14 +1,20 @@
 import React, {useEffect, useState} from "react";
-import {Row} from 'react-materialize';
+import {Row,Icon, Button, Col} from 'react-materialize';
+import Formulario from "../Formulario/Formulario";
 import Curso from "./curso";
+import { useHistory } from "react-router-dom";
+
+
+
 
 
 const Cursos = () => {
 
     const [cursos, setCursos] = useState([{
         colecaoId: 0,
-        descricao: "Descrição nula"
-        
+        descricao: "Descrição nula",
+        nome:"",
+        publico: true
     }])
 
     useEffect(()=>{
@@ -18,14 +24,40 @@ const Cursos = () => {
         .catch(error => console.log(error))
     })
 
+    const history= useHistory();
+
+    function handleClick() {
+        history.push("/formulario");
+      }
+    
+
+    
+
    return(
+       <Col>
   <Row>
       {cursos.map(function(item){
-          return <Curso>descricao={item.descricao}title={item.descricao}</Curso>
+          return <Curso descricao={item.descricao}title={item.nome}></Curso>
       })}
   </Row>
-  )
 
+<center>
+  <Row>
+      <Button
+  className="purple"
+  floating
+  icon={<Icon>add</Icon>}
+  large
+  node="button"
+  waves="light"
+  onClick = {handleClick}
+  />
+</Row>
+</center>
+
+  </Col>
+  )
+  
   };
 
 export default Cursos;

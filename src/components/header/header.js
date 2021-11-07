@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom'
 
 const Header = () => (
   <Row>  
-    <Navbar className="grey darken-2">
+    <Navbar className="purple">
       <li><NavLink to="/">Home</NavLink></li>
       <li><NavLink to="cursos">Cursos</NavLink></li>
     </Navbar>
