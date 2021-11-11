@@ -12,12 +12,12 @@ import { useHistory } from "react-router-dom";
       }
     
 
-        const [cursos, setCursos] = useState([{
+        const [cursos, setCursos] = useState({
             colecaoId: 0,
             descricao: "",
             nome:"",
             publico: false
-        }])
+        })
         
         const history= useHistory();
 

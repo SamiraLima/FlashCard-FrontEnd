@@ -22,7 +22,7 @@ const Cursos = () => {
         .then(res => res.json())
         .then(res => setCursos(res))
         .catch(error => console.log(error))
-    })
+    },1)
 
     const history= useHistory();
 
