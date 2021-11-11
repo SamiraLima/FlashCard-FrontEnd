@@ -7,10 +7,16 @@ import { useHistory } from "react-router-dom";
 
  const Formulario = () => {
 
+    function handleClick() {
+        history.push("/cursos");
+      }
+    
+
         const [cursos, setCursos] = useState([{
             colecaoId: 0,
             descricao: "",
-            nome:""
+            nome:"",
+            publico: false
         }])
         
         const history= useHistory();
@@ -21,6 +27,14 @@ import { useHistory } from "react-router-dom";
 
      setCursos({ ...cursos,[name]: value});
     }
+
+    function onChangeP(ev){
+        
+   
+        setCursos({ ...cursos,publico: ev.target.checked});
+       }
+    
+
 
     function onSubmit(ev){
         ev.preventDefault();
@@ -34,7 +48,7 @@ import { useHistory } from "react-router-dom";
 
         <div>
 
-        <center><h4 className="subtitle">Formulário</h4></center>
+        <center><h4 className="subtitle">Novo Curso</h4></center>
 
         <form onSubmit= {onSubmit}>
         <label>Título</label>
@@ -43,8 +57,31 @@ import { useHistory } from "react-router-dom";
         <label>Descrição</label>
         <input type="text" name = "descricao" placeholder= "Descrição do Curso" onChange={onChange}/><br/><br/>
 
-        
+    <center>
+  <div class="switch">
+    <label>
+      Privado
+      <input type="checkbox" checked = {cursos.publico} onChange={onChangeP}/>
+      
+      <span class="lever"></span>
+      Público
+    </label>
+  </div>
+</center>
 
+
+<div class="row">
+    
+<Button
+    node="button"
+    style={{
+      marginRight: '5px'
+    }}
+    waves="light"
+    onClick = {handleClick}
+  >
+    Cancelar
+  </Button>
 
         <Button
         node="button"
@@ -56,7 +93,8 @@ import { useHistory } from "react-router-dom";
         send
        </Icon>
        </Button>
-        
+       
+        </div>
         </form>
         
 

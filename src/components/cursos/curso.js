@@ -20,7 +20,7 @@ const Curso = (props) => (
     >
       <p>
         <a href="#">
-          This is a link
+          Editar
         </a>
       </p>
     </Card>

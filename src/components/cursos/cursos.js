@@ -14,7 +14,7 @@ const Cursos = () => {
         colecaoId: 0,
         descricao: "Descrição nula",
         nome:"",
-        publico: true
+        publico: false
     }])
 
     useEffect(()=>{
