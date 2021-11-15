@@ -18,6 +18,8 @@ const Main = () => (
         <Route exact path='/' component={Home}/>
         <Route path='/cursos' component={Cursos}/>
         <Route path='/formulario' component={Formulario}/>
+        <Route path='/editar/:colecaoId' component={Formulario}/>
+
       </Switch>
     </Container>
   </main>  

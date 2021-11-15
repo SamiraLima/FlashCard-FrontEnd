@@ -37,7 +37,7 @@ const Cursos = () => {
        <Col>
   <Row>
       {cursos.map(function(item){
-          return <Curso descricao={item.descricao}title={item.nome}></Curso>
+          return <Curso descricao={item.descricao}title={item.nome} colecaoId={item.colecaoId}></Curso>
       })}
   </Row>
 

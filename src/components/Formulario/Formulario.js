@@ -2,8 +2,10 @@
 import React, {useState} from "react";
 // Importando os components necessários da lib react-materialize
 import { Row, div, Switch, Button, Icon  } from 'react-materialize';
-import axios from 'axios';
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+import api from "../../services/api";
 
  const Formulario = () => {
 
@@ -11,7 +13,7 @@ import { useHistory } from "react-router-dom";
         history.push("/cursos");
       }
     
-
+        const {colecaoId} = useParams();
         const [cursos, setCursos] = useState({
             colecaoId: 0,
             descricao: "",
@@ -21,7 +23,6 @@ import { useHistory } from "react-router-dom";
         
         const history= useHistory();
 
-
     function onChange(ev){
      const {name, value} = ev.target;
 
@@ -29,12 +30,9 @@ import { useHistory } from "react-router-dom";
     }
 
     function onChangeP(ev){
-        
    
         setCursos({ ...cursos,publico: ev.target.checked});
        }
-    
-
 
     function onSubmit(ev){
         ev.preventDefault();
@@ -43,6 +41,12 @@ import { useHistory } from "react-router-dom";
             history.push('/cursos');
         });
     }
+
+    useEffect(()=>{
+      api.get("/colecoes/" + colecaoId)
+      .then(response => setCursos(response.data));
+    },colecaoId)
+
 
     return(
 
