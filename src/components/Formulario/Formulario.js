@@ -36,10 +36,17 @@ import api from "../../services/api";
 
     function onSubmit(ev){
         ev.preventDefault();
-        axios.post('https://flashcard-api-mayck.herokuapp.com/api/colecoes', cursos)
+        if(colecaoId){
+          axios.put('https://flashcard-api-mayck.herokuapp.com/api/colecoes' + colecaoId, cursos)
+          .then((response)=> {
+              history.push('/cursos');
+          });
+        }else{
+          axios.post('https://flashcard-api-mayck.herokuapp.com/api/colecoes', cursos)
         .then((response)=> {
             history.push('/cursos');
         });
+        }
     }
 
     useEffect(()=>{
@@ -56,10 +63,10 @@ import api from "../../services/api";
 
         <form onSubmit= {onSubmit}>
         <label>Título</label>
-        <input type="text" name = "nome" placeholder= "Título do Curso" onChange={onChange}/><br/><br/>
+        <input type="text" name = "nome" value = {cursos.nome} placeholder= "Título do Curso" onChange={onChange}/><br/><br/>
 
         <label>Descrição</label>
-        <input type="text" name = "descricao" placeholder= "Descrição do Curso" onChange={onChange}/><br/><br/>
+        <input type="text" name = "descricao" value = {cursos.descricao} placeholder= "Descrição do Curso" onChange={onChange}/><br/><br/>
 
     <center>
   <div class="switch">
