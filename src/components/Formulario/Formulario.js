@@ -37,7 +37,7 @@ import api from "../../services/api";
     function onSubmit(ev){
         ev.preventDefault();
         if(colecaoId){
-          axios.put('https://flashcard-api-mayck.herokuapp.com/api/colecoes' + colecaoId, cursos)
+          axios.put('https://flashcard-api-mayck.herokuapp.com/api/colecoes/' + colecaoId, cursos)
           .then((response)=> {
               history.push('/cursos');
           });
@@ -50,6 +50,7 @@ import api from "../../services/api";
     }
 
     useEffect(()=>{
+      if(!colecaoId) return;
       api.get("/colecoes/" + colecaoId)
       .then(response => setCursos(response.data));
     },colecaoId)
